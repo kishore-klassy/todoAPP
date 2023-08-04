@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:todo/components/todolist.dart';
 import 'package:todo/components/dialogbox.dart';
+import 'package:todo/data/database.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -10,32 +11,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List todoList = [
-    ["Flutter Animations", false],
-    ["Food Ui", false],
-    ["Batminton", false],
-    ["Beebag Ui", false],
-    ["College", false],
-    ["Jogging", false],
-    ["Flutter Animations", false],
-    ["Food Ui", false],
-    ["Batminton", false],
-    ["Beebag Ui", false],
-    ["College", false],
-    ["Jogging", false],
-    ["Flutter Animations", false],
-    ["Food Ui", false],
-    ["Batminton", false],
-    ["Beebag Ui", false],
-    ["College", false],
-    ["Jogging", false],
-    ["Flutter Animations", false],
-    ["Food Ui", false],
-    ["Batminton", false],
-    ["Beebag Ui", false],
-    ["College", false],
-    ["Jogging", false]
-  ];
+  final _controller = TextEditingController();
+
+
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
@@ -48,14 +26,21 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: (context) {
-          return DialogBox();
+          return DialogBox(controller: _controller);
         });
+  }
+
+  void saveTask() {
+    todoList.add([]);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: createNewTask,child: Icon(Icons.add),),
+        floatingActionButton: FloatingActionButton(
+          onPressed: createNewTask,
+          child: Icon(Icons.add),
+        ),
         appBar: AppBar(
           title: Text(
             "TO DO",
