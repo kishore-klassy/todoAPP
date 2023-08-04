@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:todo/components/todolist.dart';
-
+import 'package:todo/components/dialogbox.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -10,11 +10,52 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List todoList = [("Flutter Animations", false), ("Food Ui", true)];
+  List todoList = [
+    ["Flutter Animations", false],
+    ["Food Ui", false],
+    ["Batminton", false],
+    ["Beebag Ui", false],
+    ["College", false],
+    ["Jogging", false],
+    ["Flutter Animations", false],
+    ["Food Ui", false],
+    ["Batminton", false],
+    ["Beebag Ui", false],
+    ["College", false],
+    ["Jogging", false],
+    ["Flutter Animations", false],
+    ["Food Ui", false],
+    ["Batminton", false],
+    ["Beebag Ui", false],
+    ["College", false],
+    ["Jogging", false],
+    ["Flutter Animations", false],
+    ["Food Ui", false],
+    ["Batminton", false],
+    ["Beebag Ui", false],
+    ["College", false],
+    ["Jogging", false]
+  ];
+
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      todoList[index][1] = !todoList[index][1];
+    });
+    //db.updateDataBase();
+  }
+
+  void createNewTask() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return DialogBox();
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(onPressed: createNewTask,child: Icon(Icons.add),),
         appBar: AppBar(
           title: Text(
             "TO DO",
@@ -22,14 +63,16 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Colors.lightBlueAccent,
         ),
-        body: ListView.builder(
-          itemCount: todoList.length,
-          itemBuilder: (context, index) {
-            return TodoTile(
-                taskName: todoList[index][0],
-                taskCompleted: todoList[index][1],
-                onChanged: onChanged);
-          },
+        body: Container(
+          child: ListView.builder(
+            itemCount: todoList.length,
+            itemBuilder: (context, index) {
+              return TodoTile(
+                  taskName: todoList[index][0],
+                  taskCompleted: todoList[index][1],
+                  onChanged: (value) => checkBoxChanged(value, index));
+            },
+          ),
         ));
   }
 }

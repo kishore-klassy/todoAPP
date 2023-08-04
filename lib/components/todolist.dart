@@ -13,22 +13,19 @@ class TodoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: FractionallySizedBox(
-      widthFactor: 0.8, // 80% of the available width
-      heightFactor: 0.08, // 60% of the available height
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.lightBlueAccent,
-        ),
-        child: Row(
-          children: [
-            Checkbox(value: taskCompleted, onChanged: onChanged),
-            Text("Leet Code Problems"),
-          ],
-        ),
-      ),
-    ));
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+    decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(12),
+    color: Colors.lightBlueAccent,
+    ),
+    child: Row(
+    children: [
+      Checkbox(value: taskCompleted, onChanged: onChanged),
+      Text(taskName),
+    ],
+    ),
+    );
   }
 }
