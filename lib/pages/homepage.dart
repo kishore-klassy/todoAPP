@@ -20,21 +20,32 @@ class _HomePageState extends State<HomePage> {
     });
     //db.updateDataBase();
   }
-   // save new task
+
+  // save new task
   void saveNewTask() {
     setState(() {
       todoList.add([_controller.text, false]);
       _controller.clear();
     });
     Navigator.of(context).pop();
-   
+  }
+
+  void deleteTask(int index) {
+    setState(() {
+      todoList.removeAt(index);
+
+    });
   }
 
   void createNewTask() {
     showDialog(
         context: context,
         builder: (context) {
-          return DialogBox(controller: _controller,onCancel:()=>Navigator.of(context).pop(),onSave: saveNewTask,);
+          return DialogBox(
+            controller: _controller,
+            onCancel: () => Navigator.of(context).pop(),
+            onSave: saveNewTask
+          );
         });
   }
 
@@ -59,7 +70,9 @@ class _HomePageState extends State<HomePage> {
               return TodoTile(
                   taskName: todoList[index][0],
                   taskCompleted: todoList[index][1],
-                  onChanged: (value) => checkBoxChanged(value, index));
+                  onChanged: (value) => checkBoxChanged(value, index),
+                  deleteFunction: (context)=>deleteTask(index),
+                  );
             },
           ),
         ));

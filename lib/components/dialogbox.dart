@@ -3,11 +3,18 @@ import 'package:todo/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/components/button.dart';
 import 'package:todo/data/database.dart';
+
 class DialogBox extends StatelessWidget {
   final TextEditingController controller;
   VoidCallback onSave;
   VoidCallback onCancel;
-  DialogBox({Key? key, required this.controller,required this.onSave,required this.onCancel}) : super(key: key);
+  DialogBox(
+      {Key? key,
+      required this.controller,
+      required this.onSave,
+      required this.onCancel,
+      })
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +34,9 @@ class DialogBox extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                MyButton(
-                  buttonName: "Save",
-                  onPressed: onSave
-                ),
+                MyButton(buttonName: "Save", onPressed: onSave),
                 SizedBox(width: 10),
-                MyButton(
-                  buttonName: "Cancel",
-                  onPressed: onCancel
-                ),
+                MyButton(buttonName: "Cancel", onPressed: onCancel),
               ],
             ),
           ],
