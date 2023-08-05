@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:todo/components/todolist.dart';
+import 'package:todo/components/todo_tile.dart';
 import 'package:todo/components/dialogbox.dart';
 import 'package:todo/data/database.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -13,25 +14,28 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
 
-
-
   void checkBoxChanged(bool? value, int index) {
     setState(() {
       todoList[index][1] = !todoList[index][1];
     });
     //db.updateDataBase();
   }
+   // save new task
+  void saveNewTask() {
+    setState(() {
+      todoList.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+   
+  }
 
   void createNewTask() {
     showDialog(
         context: context,
         builder: (context) {
-          return DialogBox(controller: _controller);
+          return DialogBox(controller: _controller,onCancel:()=>Navigator.of(context).pop(),onSave: saveNewTask,);
         });
-  }
-
-  void saveTask() {
-    todoList.add([]);
   }
 
   @override

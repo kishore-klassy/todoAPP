@@ -3,16 +3,12 @@ import 'package:todo/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/components/button.dart';
 import 'package:todo/data/database.dart';
-class DialogBox extends StatefulWidget {
+class DialogBox extends StatelessWidget {
   final TextEditingController controller;
+  VoidCallback onSave;
+  VoidCallback onCancel;
+  DialogBox({Key? key, required this.controller,required this.onSave,required this.onCancel}) : super(key: key);
 
-  DialogBox({Key? key, required this.controller}) : super(key: key);
-
-  @override
-  State<DialogBox> createState() => _DialogBoxState();
-}
-
-class _DialogBoxState extends State<DialogBox> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -22,7 +18,7 @@ class _DialogBoxState extends State<DialogBox> {
         child: Column(
           children: [
             TextField(
-              controller: widget.controller,
+              controller: controller,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Add a new Task",
@@ -33,19 +29,12 @@ class _DialogBoxState extends State<DialogBox> {
               children: [
                 MyButton(
                   buttonName: "Save",
-                  onPressed: () {
-                    setState(() {
-                      todoList.add([widget.controller.text, false]);
-                    });
-                    Navigator.of(context).pop();
-                  },
+                  onPressed: onSave
                 ),
                 SizedBox(width: 10),
                 MyButton(
                   buttonName: "Cancel",
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                  onPressed: onCancel
                 ),
               ],
             ),
