@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:todo/pages/homepage.dart';
 
+// ignore: must_be_immutable
 class TodoTile extends StatelessWidget {
   final String taskName;
   final bool taskCompleted;
@@ -22,7 +22,7 @@ class TodoTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 25, top: 25, right: 25),
       child: Slidable(
-        endActionPane: ActionPane(motion: StretchMotion(), children: [
+        endActionPane: ActionPane(motion: const StretchMotion(), children: [
           SlidableAction(
             onPressed: deleteFunction,
             icon: Icons.delete_forever,
@@ -31,7 +31,7 @@ class TodoTile extends StatelessWidget {
           ),
         ]),
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: Colors.lightBlueAccent,
@@ -41,11 +41,11 @@ class TodoTile extends StatelessWidget {
               Checkbox(value: taskCompleted, onChanged: onChanged),
               Text(
                 taskName,
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
-              Spacer(),
+              const Spacer(),
               IconButton(
-                icon: Icon(Icons.edit, size: 30),
+                icon: const Icon(Icons.edit, size: 30),
                 onPressed: () => editFunction!(taskName),
               )
             ],
