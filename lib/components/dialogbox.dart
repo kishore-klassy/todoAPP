@@ -13,6 +13,7 @@ class DialogBox extends StatelessWidget {
       required this.controller,
       required this.onSave,
       required this.onCancel,
+
       })
       : super(key: key);
 

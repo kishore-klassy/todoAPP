@@ -48,6 +48,30 @@ class _HomePageState extends State<HomePage> {
           );
         });
   }
+void editTask(String taskName) {
+  _controller.text = taskName;
+  showDialog(
+    context: context,
+    builder: (context) {
+      return DialogBox(
+        controller: _controller,
+        onCancel: () => Navigator.of(context).pop(),
+        onSave: () {
+          int index = todoList.indexWhere((task) => task[0] == taskName);
+          if (index != -1) {
+            setState(() {
+              todoList[index][0] = _controller.text;
+            });
+            _controller.clear();
+            Navigator.of(context).pop();
+          }
+        },
+      );
+    },
+  );
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                   taskCompleted: todoList[index][1],
                   onChanged: (value) => checkBoxChanged(value, index),
                   deleteFunction: (context)=>deleteTask(index),
+                  editFunction:editTask ,
                   );
             },
           ),
