@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       _controller.clear();
     });
     Navigator.of(context).pop();
+    db.updateDataBase();
   }
 
   void deleteTask(int index) {
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
       db.todoList.removeAt(index);
 
     });
+      db.updateDataBase();
   }
 
   void createNewTask() {
@@ -53,6 +55,7 @@ class _HomePageState extends State<HomePage> {
             onSave: saveNewTask
           );
         });
+
   }
 void editTask(String taskName) {
   _controller.text = taskName;
