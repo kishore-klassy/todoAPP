@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/components/todo_tile.dart';
 import 'package:todo/components/dialogbox.dart';
 import 'package:todo/data/database.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,17 +14,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
 
+    // reference the hive box
+  final _myBox = Hive.box('mybox');
+  TodoDataBase db = TodoDataBase();
+
+
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      todoList[index][1] = !todoList[index][1];
+      db.todoList[index][1] = !db.todoList[index][1];
     });
-    //db.updateDataBase();
+    db.updateDataBase();
   }
 
   // save new task
   void saveNewTask() {
     setState(() {
-      todoList.add([_controller.text, false]);
+      db.todoList.add([_controller.text, false]);
       _controller.clear();
     });
     Navigator.of(context).pop();
@@ -31,12 +37,13 @@ class _HomePageState extends State<HomePage> {
 
   void deleteTask(int index) {
     setState(() {
-      todoList.removeAt(index);
+      db.todoList.removeAt(index);
 
     });
   }
 
   void createNewTask() {
+     _controller.clear();
     showDialog(
         context: context,
         builder: (context) {
@@ -56,10 +63,10 @@ void editTask(String taskName) {
         controller: _controller,
         onCancel: () => Navigator.of(context).pop(),
         onSave: () {
-          int index = todoList.indexWhere((task) => task[0] == taskName);
+          int index = db.todoList.indexWhere((task) => task[0] == taskName);
           if (index != -1) {
             setState(() {
-              todoList[index][0] = _controller.text;
+              db.todoList[index][0] = _controller.text;
             });
             _controller.clear();
             Navigator.of(context).pop();
@@ -69,7 +76,18 @@ void editTask(String taskName) {
     },
   );
 }
+  @override
+  void initState() {
+    // if this is the 1st time ever opening the app, then create default data
+    if (_myBox.get("TODOLIST") == null) {
+      db.createInitialData();
+    } else {
+      // there already exists data
+      db.loadData();
+    }
 
+    super.initState();
+  }
 
 
   @override
@@ -77,28 +95,32 @@ void editTask(String taskName) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: createNewTask,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "TO DO",
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
           backgroundColor: Colors.lightBlueAccent,
         ),
         body: Container(
-          child: ListView.builder(
-            itemCount: todoList.length,
+         child: db.todoList.length==0 ?
+            const Center(child: Text("No Task,Add Some thing"))
+            : ListView.builder(
+            itemCount: db.todoList.length,
             itemBuilder: (context, index) {
               return TodoTile(
-                  taskName: todoList[index][0],
-                  taskCompleted: todoList[index][1],
+                  taskName: db.todoList[index][0],
+                  taskCompleted: db.todoList[index][1],
                   onChanged: (value) => checkBoxChanged(value, index),
                   deleteFunction: (context)=>deleteTask(index),
                   editFunction:editTask ,
                   );
             },
-          ),
-        ));
+          )
+        ),
+         
+        );
   }
 }
