@@ -15,7 +15,9 @@ class TodoTile extends StatelessWidget {
       required this.taskCompleted,
       required this.onChanged,
       required this.deleteFunction,
-     required this.editFunction});
+     required this.editFunction,
+    
+     });
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,9 @@ class TodoTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           decoration: BoxDecoration(
+            boxShadow:[BoxShadow(blurRadius: 5,color: Colors.black,)],
             borderRadius: BorderRadius.circular(12),
-            color: Colors.lightBlueAccent,
+            color: Colors.white,
           ),
           child: Row(
             children: [

@@ -97,6 +97,7 @@ void editTask(String taskName) {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
         floatingActionButton: FloatingActionButton(
           onPressed: createNewTask,
           child: const Icon(Icons.add),
@@ -107,7 +108,7 @@ void editTask(String taskName) {
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
           backgroundColor: Colors.lightBlueAccent,
-        ),
+        ), 
         body: Container(
          child: db.todoList.length==0 ?
             const Center(child: Text("No Task,Add Some thing"))
