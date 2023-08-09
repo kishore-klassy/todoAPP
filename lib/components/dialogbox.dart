@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo/components/button.dart';
+import 'package:todoapp/components/button.dart';
 
 class DialogBox extends StatelessWidget {
   final TextEditingController controller;
@@ -19,12 +19,12 @@ class DialogBox extends StatelessWidget {
     return AlertDialog(
       content: Container(
         height: 120,
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
             TextField(
               controller: controller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Add a new Task",
               ),
@@ -33,7 +33,7 @@ class DialogBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 MyButton(buttonName: "Save", onPressed: onSave),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 MyButton(buttonName: "Cancel", onPressed: onCancel),
               ],
             ),

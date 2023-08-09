@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:todo/components/todo_tile.dart';
-import 'package:todo/components/dialogbox.dart';
-import 'package:todo/data/database.dart';
+import 'package:todoapp/components/todo_tile.dart';
+import 'package:todoapp/components/dialogbox.dart';
+import 'package:todoapp/data/database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final Box<dynamic> box;
+  const HomePage({super.key,required this.box});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -82,7 +83,7 @@ void editTask(String taskName) {
   @override
   void initState() {
     // if this is the 1st time ever opening the app, then create default data
-    if (_myBox.get("TODOLIST") == null) {
+    if (widget.box.get("TODOLIST") == null) {
       db.createInitialData();
     } else {
       // there already exists data

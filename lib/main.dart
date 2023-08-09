@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:todo/pages/homepage.dart';
-void main() {
-  runApp(const MyApp());
+import 'package:todoapp/pages/homepage.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+void main() async {
+  // Init Hive
+  await Hive.initFlutter();
+
+  // Open a box
+  var box = await Hive.openBox('mybox');
+
+  runApp(MyApp(box: box));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Box<dynamic> box;
 
-  // This widget is the root of your application.
+  MyApp({Key? key, required this.box}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,8 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: HomePage(box: box), // Pass the box parameter to HomePage
     );
   }
 }
-
