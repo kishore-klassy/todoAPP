@@ -3,8 +3,8 @@ import 'package:todoapp/components/button.dart';
 
 class DialogBox extends StatefulWidget {
   final TextEditingController controller;
-  VoidCallback onSave;
-  VoidCallback onCancel;
+  final VoidCallback onSave;
+  final VoidCallback onCancel;
   DialogBox({
     Key? key,
     required this.controller,

@@ -1,10 +1,7 @@
 import 'dart:ui';
 
+// ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:todoapp/pages/homepage.dart';
-import 'package:todoapp/main.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NewTaskPage extends StatefulWidget {

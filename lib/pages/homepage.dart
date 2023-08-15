@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:todoapp/components/todo_tile.dart';
 import 'package:todoapp/components/dialogbox.dart';
 import 'package:todoapp/data/database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todoapp/pages/new_task_page.dart';
+
+import '../components/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
   final Box<dynamic>? box;
@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
 
   // reference the hive box
+  // ignore: unused_field
   final _myBox = Hive.box('mybox');
   TodoDataBase db = TodoDataBase();
 
@@ -147,16 +148,17 @@ class _HomePageState extends State<HomePage> {
                     // Colors.red,
                     // Colors.blue
                   ],
-                  begin: Alignment(0,-1),
+                  begin: Alignment(0, -1),
                   //end: Alignment(10, 10),
                   stops: [0.30, 1])),
-          padding: const EdgeInsets.only(top: 50,left: 20,right:0),
-          height: double.maxFinite,
-          width: double.maxFinite,
+          padding: const EdgeInsets.only(top: 50, left: 20, right: 0),
+          height: MediaQuery.of(context).size.height,
+          
           child: Column(
             children: [
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(parent: NeverScrollableScrollPhysics()),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -170,23 +172,48 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.w600,
                               color: Colors.white),
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "Monday 19",
                           style: GoogleFonts.aBeeZee(
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
-                              color: Color.fromRGBO(154, 115, 239, 1)),
+                              color: const Color.fromRGBO(154, 115, 239, 1)),
                         ),
                       ],
                     ),
-                    Container(
-                      width: 150,
-                      height: 150,
-                      child: Lottie.asset("assets/clips/avatar.json"))
+                    SizedBox(
+                        width: 150,
+                        height: 150,
+                        child: Lottie.asset("assets/clips/avatar.json"))
                   ],
                 ),
-              )
+              ),
+              SizedBox(
+                height: 0,
+              ),
+              Expanded(
+                child: Container(
+                  
+                    width: MediaQuery.of(context).size.width,
+                    child: db.todoList.length == 0
+                        ? const Center(child: Text("No Task,Add Some thing"))
+                        : ListView.builder(
+                            itemCount: db.todoList.length,
+                            itemBuilder: (context, index) {
+                              return TodoTile(
+                                taskName: db.todoList[index][0],
+                                taskCompleted: db.todoList[index][1],
+                                onChanged: (value) =>
+                                    checkBoxChanged(value, index),
+                                deleteFunction: (context) => deleteTask(index),
+                                editFunction: editTask,
+                              );
+                            },
+                          )),
+              ),
             ],
           )),
     );
