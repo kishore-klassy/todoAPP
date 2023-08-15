@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/data/signup_page.dart';
 import 'package:todoapp/pages/homepage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       color: Colors.amberAccent,
-      home: HomePage(box: box), // Pass the box parameter to HomePage
+      home: SignUpPage(), // Pass the box parameter to HomePage
     );
   }
 }
