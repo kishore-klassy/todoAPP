@@ -21,14 +21,14 @@ class _NewTaskPageState extends State<NewTaskPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-            color: Color.fromARGB(255, 52, 53, 67),
+            color: const Color.fromARGB(255, 52, 53, 67),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back,
                         color: Colors.white,
                         size: 30,
@@ -45,7 +45,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
                   //   child: Lottie.network("https://lottie.host/?file=3183d921-6407-4e35-8889-bc1ced558933/6BjNGjz1Pb.json",
                   //       width: 20, height: 20),
                   // ),
-                  Icon(
+                  const Icon(
                     Icons.account_circle_rounded,
                     color: Colors.white,
                     size: 40,
@@ -54,9 +54,9 @@ class _NewTaskPageState extends State<NewTaskPage> {
               ),
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(top: 20),
-                  padding: EdgeInsets.only(left: 10),
-                  decoration: BoxDecoration(
+                  margin: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(left: 10),
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
@@ -89,7 +89,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
                         ),
                         Container(
                           padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                              const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -131,21 +131,21 @@ class _NewTaskPageState extends State<NewTaskPage> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          padding: EdgeInsets.all(10),
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 239, 237, 237),
+                              color: const Color.fromARGB(255, 239, 237, 237),
                               borderRadius: BorderRadius.circular(12)),
                           child: Row(
                             children: [
                               Expanded(
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 5),
                                   decoration: BoxDecoration(
                                       color: Colors.blue,
                                       borderRadius: BorderRadius.circular(12)),
-                                  child: Row(
+                                  child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
@@ -164,17 +164,17 @@ class _NewTaskPageState extends State<NewTaskPage> {
                                       ]),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 20,
                               ),
                               Expanded(
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 5),
                                   decoration: BoxDecoration(
                                       color: Colors.grey[350],
                                       borderRadius: BorderRadius.circular(12)),
-                                  child: Row(
+                                  child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [

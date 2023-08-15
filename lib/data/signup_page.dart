@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:lottie/lottie.dart';
 import 'package:todoapp/components/signin_button.dart';
+import 'package:todoapp/pages/homepage.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+  final Box<dynamic>? box;
+
+  const SignUpPage({super.key,this.box});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -14,26 +19,26 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Color.fromRGBO(91,71,180,1),
+                  Color.fromRGBO(91, 71, 180, 1),
                   Color.fromRGBO(44, 38, 57, 1),
                   Color.fromRGBO(29, 31, 37, 1)
                   // Colors.red,
                   // Colors.blue
                 ],
                 begin: Alignment.topLeft,
-                stops: [0.04,0.60, 1])),
-        padding: EdgeInsets.only(top: 50),
+                stops: [0.04, 0.60, 1])),
+        padding: const EdgeInsets.only(top: 50),
         height: double.maxFinite,
         width: double.maxFinite,
         child: Column(
           children: [
-            Icon(
-              Icons.task_rounded,
-              size: 400,
-            ),
+            Container(
+                width: 400,
+                height: 400,
+                child: Lottie.asset("assets/clips/animation_llchwdpd.json")),
             Text(
               "Organize your works",
               style: GoogleFonts.aBeeZee(
@@ -41,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   fontWeight: FontWeight.w600,
                   color: Colors.white),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
@@ -51,7 +56,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   fontWeight: FontWeight.w400,
                   color: Colors.grey[500]),
             ),
-            SizedBox(height: 5,),
+            const SizedBox(
+              height: 5,
+            ),
             Text(
               "and do everything without stress",
               style: GoogleFonts.aBeeZee(
@@ -59,10 +66,24 @@ class _SignUpPageState extends State<SignUpPage> {
                   fontWeight: FontWeight.w400,
                   color: Colors.grey[500]),
             ),
-            SizedBox(height: 40,),
-            SignInButton(imageUrl: "assets\images\facebooklogo.png",name: "Continue with Facebook"),
-            SignInButton(imageUrl: "assets\images\facebooklogo.png",name: "Continue with Google",),
-            SignInButton(imageUrl: "assets\images\facebooklogo.png",name: "Continue with email",)
+            const SizedBox(
+              height: 20,
+            ),
+            const SignInButton(
+              imageUrl: "assets/images/emaillogo.png",
+              name: "Continue with email",
+            ),
+            const SignInButton(
+              imageUrl: "assets/images/googlelogo.png",
+              name: "Continue with Google",
+            ),
+            GestureDetector(
+              child: const SignInButton(
+                imageUrl: "assets/images/skipfornow.png",
+                name: "Continue without signing in",
+              ),
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context)=>HomePage(box: widget.box,))),
+            ),
           ],
         ),
       ),

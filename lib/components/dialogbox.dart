@@ -44,12 +44,12 @@ class _DialogBoxState extends State<DialogBox> {
                 hintText: "Add a new Task",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             MaterialButton(
-              child: Text("Time"),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+              child: const Text("Time"),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
               color: Colors.blue,
               onPressed: _showTimePicker,
             ),

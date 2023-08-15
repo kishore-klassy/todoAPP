@@ -41,7 +41,7 @@ class _TodoTileState extends State<TodoTile> {
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           decoration: BoxDecoration(
             boxShadow: [
-              BoxShadow(
+              const BoxShadow(
                 blurRadius: 5,
                 color: Colors.black,
               )
@@ -61,9 +61,9 @@ class _TodoTileState extends State<TodoTile> {
                 style: MSHCheckboxStyle.stroke,
                 onChanged:widget.onChanged,
               ),
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
               Text(
-               style:  widget.taskCompleted==true ?TextStyle(decoration: TextDecoration.lineThrough,fontSize: 20,color: Colors.grey): TextStyle(decoration:TextDecoration.none,fontSize: 20),
+               style:  widget.taskCompleted==true ?const TextStyle(decoration: TextDecoration.lineThrough,fontSize: 20,color: Colors.grey): const TextStyle(decoration:TextDecoration.none,fontSize: 20),
                 widget.taskName,
               ),
               const Spacer(),

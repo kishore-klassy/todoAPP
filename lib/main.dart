@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       color: Colors.amberAccent,
-      home: SignUpPage(), // Pass the box parameter to HomePage
+      home: SignUpPage(box:box), // Pass the box parameter to HomePage
     );
   }
 }

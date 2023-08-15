@@ -21,8 +21,12 @@ class _SignInButtonState extends State<SignInButton> {
           color: Color.fromRGBO(41, 46, 60, 1)),
       child: Row(
         children: [
-          Image.asset(widget.imageUrl),
-          Image.asset("assets/images/facebooklogo.png"),
+          Container(
+            width: 40,
+            height: 40,
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: Image.asset(widget.imageUrl)),
+          
           Text(widget.name,
               style: GoogleFonts.aBeeZee(
                   fontSize: 15,
