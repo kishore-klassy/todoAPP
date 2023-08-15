@@ -90,7 +90,7 @@ class _TodoTileState extends State<TodoTile> {
               checkedColor: Colors.green,
               uncheckedColor: Color.fromARGB(255, 115, 112, 112)
             ),
-            style: MSHCheckboxStyle.fillScaleColor,
+            style: MSHCheckboxStyle.stroke,
             onChanged: widget.onChanged,
           ),
           SizedBox(
@@ -106,7 +106,6 @@ class _TodoTileState extends State<TodoTile> {
                       ? Color.fromRGBO(77, 125, 237, 1)
                       : Color.fromRGBO(41, 46, 60, 1)),
               child: Row(
-              //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                  Container (
                     padding: EdgeInsets.symmetric(horizontal: 10),
@@ -123,7 +122,7 @@ class _TodoTileState extends State<TodoTile> {
                         constraints: BoxConstraints(minWidth:150 ),
                         child: Text(
                           widget.taskName,
-                          style: GoogleFonts.aboreto(
+                          style: GoogleFonts.preahvihear(
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                               color: Colors.white),
@@ -133,6 +132,7 @@ class _TodoTileState extends State<TodoTile> {
                       Text(
                         "7.00 AM",
                         style: TextStyle(
+                            
                             fontSize: 17,
                             color: Colors.white,
                             fontWeight: FontWeight.w300),
