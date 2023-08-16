@@ -14,17 +14,17 @@ class _SignInButtonState extends State<SignInButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      padding: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: Color.fromRGBO(41, 46, 60, 1)),
+          color: const Color.fromRGBO(41, 46, 60, 1)),
       child: Row(
         children: [
           Container(
             width: 40,
             height: 40,
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             child: Image.asset(widget.imageUrl)),
           
           Text(widget.name,

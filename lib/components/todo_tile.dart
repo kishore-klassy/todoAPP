@@ -79,67 +79,86 @@ class _TodoTileState extends State<TodoTile> {
     // );
 
     return Container(
-      width: double.maxFinite,
-      padding: EdgeInsets.symmetric(vertical: 20),
+      width: MediaQuery.of(context).size.width - 20,
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
         children: [
           MSHCheckbox(
             size: 30,
             value: widget.taskCompleted,
             colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-              checkedColor: Colors.green,
-              uncheckedColor: Color.fromARGB(255, 115, 112, 112)
-            ),
+                checkedColor: Colors.green,
+                uncheckedColor: const Color.fromARGB(255, 115, 112, 112)),
             style: MSHCheckboxStyle.stroke,
             onChanged: widget.onChanged,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Expanded(
-            child: Container(
-              margin: EdgeInsets.only(left: 10, right: 20),
-              padding: EdgeInsets.symmetric(vertical: 20),
-              decoration: BoxDecoration(
+            child: Slidable(
+              startActionPane:
+                  ActionPane(motion: const StretchMotion(), children: [
+                SlidableAction(
+                  onPressed: widget.deleteFunction,
+                  icon: Icons.edit,
+                  backgroundColor: Colors.green,
                   borderRadius: BorderRadius.circular(12),
-                  color: widget.taskCompleted == true
-                      ? Color.fromRGBO(77, 125, 237, 1)
-                      : Color.fromRGBO(41, 46, 60, 1)),
-              child: Row(
-                children: [
-                 Container (
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                  
-                    child: Icon(
-                      Icons.access_alarms_outlined,
-                      color: Colors.orange,
-                    ),
-                  ),
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        constraints: BoxConstraints(minWidth:150 ),
-                        child: Text(
-                          widget.taskName,
-                          style: GoogleFonts.preahvihear(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
-                        ),
+                )
+              ]),
+              endActionPane:
+                  ActionPane(motion: const StretchMotion(), children: [
+                SlidableAction(
+                  onPressed: widget.deleteFunction,
+                  icon: Icons.delete_forever,
+                  backgroundColor: Colors.red,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ]),
+              child: Container(
+                margin: const EdgeInsets.only(left: 10, right: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: widget.taskCompleted == true
+                        ? const Color.fromRGBO(77, 125, 237, 1)
+                        : const Color.fromRGBO(41, 46, 60, 1)),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: const Icon(
+                        Icons.access_alarms_outlined,
+                        color: Colors.orange,
                       ),
-                      SizedBox(width: 20,),
-                      Text(
-                        "7.00 AM",
-                        style: TextStyle(
-                            
-                            fontSize: 17,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w300),
-                      )
-                    ],
-                  )
-                ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(minWidth: 150),
+                          child: Text(
+                            widget.taskName,
+                            style: GoogleFonts.preahvihear(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        const Text(
+                          "7.00 AM",
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w300),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           )

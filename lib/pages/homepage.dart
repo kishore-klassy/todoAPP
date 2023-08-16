@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:todoapp/components/dialogbox.dart';
+import 'package:todoapp/components/create_task_page.dart';
 import 'package:todoapp/data/database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todoapp/data/signup_page.dart';
 
 import '../components/todo_tile.dart';
 
@@ -17,11 +18,33 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
-
+int _currentIndex = 0;
   // reference the hive box
   // ignore: unused_field
   final _myBox = Hive.box('mybox');
   TodoDataBase db = TodoDataBase();
+
+  void _onTabTapped(int index) {
+  setState(() {
+    _currentIndex = index;
+      if (index == 1) {
+    // Navigate to AddTaskPage
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreateNewTaskPage(controller: _controller,onSave: saveNewTask,)), // Create AddTaskPage
+    );
+  } else if (index == 2) {
+    // Navigate to SettingsPage
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SignUpPage()), // Create SettingsPage
+    );
+  }
+  });
+
+  // Rest of the navigation logic
+}
+
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
@@ -52,10 +75,8 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: (context) {
-          return DialogBox(
-              controller: _controller,
-              onCancel: () => Navigator.of(context).pop(),
-              onSave: saveNewTask);
+          return CreateNewTaskPage(
+              controller: _controller, onSave: saveNewTask);
         });
   }
 
@@ -64,17 +85,19 @@ class _HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (context) {
-        return DialogBox(
+        return CreateNewTaskPage(
           controller: _controller,
-          onCancel: () => Navigator.of(context).pop(),
-          onSave: () {
+          onSave: () async {
             int index = db.todoList.indexWhere((task) => task[0] == taskName);
             if (index != -1) {
-              setState(() {
-                db.todoList[index][0] = _controller.text;
-              });
+              db.todoList[index][0] = _controller.text;
+
               _controller.clear();
               Navigator.of(context).pop();
+              db.updateDataBase();
+              await Future.delayed(Duration.zero); // Delay the setState() call
+
+              setState(() {});
             }
           },
         );
@@ -138,27 +161,67 @@ class _HomePageState extends State<HomePage> {
       //             )
       //   ],
       // ),
+      resizeToAvoidBottomInset: false,
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: _onTabTapped,
+          currentIndex: _currentIndex,
+          backgroundColor: Color.fromRGBO(29, 31, 37, 1),
+          elevation: 3,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.white,
+                  size: 30,
+                  shadows: [
+                    Shadow(
+                        blurRadius: 6, color: Colors.white, offset: Offset.zero)
+                  ],
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/iconadd.png",
+                  width: 50,
+                ),
+                backgroundColor: Colors.purple,
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings,
+                  color: Colors.grey,
+                  size: 30,
+                ),
+                activeIcon: Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                  size: 30,
+                  shadows: [
+                    Shadow(
+                        blurRadius: 6, color: Colors.white, offset: Offset.zero)
+                  ],
+                ),
+                label: ""),
+          ]),
+
       body: Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(
                   colors: [
-                    //Color.fromRGBO(91, 71, 180, 1),
                     Color.fromRGBO(37, 32, 65, 1),
                     Color.fromRGBO(29, 31, 37, 1)
-                    // Colors.red,
-                    // Colors.blue
                   ],
                   begin: Alignment(0, -1),
                   //end: Alignment(10, 10),
                   stops: [0.30, 1])),
           padding: const EdgeInsets.only(top: 50, left: 20, right: 0),
           height: MediaQuery.of(context).size.height,
-          
           child: Column(
             children: [
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                physics: BouncingScrollPhysics(parent: NeverScrollableScrollPhysics()),
+                physics: BouncingScrollPhysics(
+                    parent: NeverScrollableScrollPhysics()),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -196,10 +259,24 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                 child: Container(
-                  
                     width: MediaQuery.of(context).size.width,
                     child: db.todoList.length == 0
-                        ? const Center(child: Text("No Task,Add Some thing"))
+                        ? Center(
+                            child: Column(
+                            children: [
+                              Lottie.asset("assets/clips/notaskanimation.json"),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "No Task,Create below!",
+                                style: GoogleFonts.itim(
+                                    fontSize: 30,
+                                    color: const Color.fromARGB(
+                                        255, 166, 107, 177)),
+                              )
+                            ],
+                          ))
                         : ListView.builder(
                             itemCount: db.todoList.length,
                             itemBuilder: (context, index) {

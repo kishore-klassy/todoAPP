@@ -13,7 +13,7 @@ class TodoDataBase {
       ["Do Exercise", false],
     ];
   }
-
+            
   // load the data from database
   void loadData() {
     todoList = _myBox.get("TODOLIST");
