@@ -13,12 +13,12 @@ class MyButton extends StatelessWidget {
       onPressed: onPressed,
       child: Center(
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
                   width: double.maxFinite,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    gradient: LinearGradient(colors: [
+                    gradient: const LinearGradient(colors: [
                       Color.fromRGBO(149, 72, 243, 1),
                       Color.fromRGBO(149, 72, 243, 1),
                     ], stops: [
@@ -28,7 +28,7 @@ class MyButton extends StatelessWidget {
                   ),
                     child: Center(
                         child: Text(
-                      "Create Task",
+                      buttonName,
                       style: GoogleFonts.aBeeZee(fontSize: 20, color: Colors.white),
                     ))
     )));

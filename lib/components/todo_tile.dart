@@ -81,7 +81,7 @@ class _TodoTileState extends State<TodoTile> {
 
     return Container(
       width: MediaQuery.of(context).size.width - 20,
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
           MSHCheckbox(
@@ -118,7 +118,7 @@ class _TodoTileState extends State<TodoTile> {
               ]),
               child: Container(
                 margin: const EdgeInsets.only(left: 10, right: 20),
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: widget.taskCompleted == true
@@ -127,31 +127,35 @@ class _TodoTileState extends State<TodoTile> {
                 child: Row(
                   children: [
                     Container(
-                      decoration: BoxDecoration(color: const Color.fromARGB(255, 207, 24, 239)),
-                      margin: EdgeInsets.symmetric(horizontal:5),
+                      decoration: BoxDecoration(color: const Color.fromARGB(255,43, 200, 217)),
+                      margin: EdgeInsets.only(right:5,left: 5),
                       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                      child: Text((widget.currentIndex+1).toString(),style: TextStyle(color: Colors.white),),
+                      child: Text((widget.currentIndex+1).toString(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800),),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          constraints: const BoxConstraints(minWidth: 150),
+                          constraints: const BoxConstraints(minWidth: 150,maxHeight: 155),
                           child: Text(
+                            
                             widget.taskName,
+                            
                             style: GoogleFonts.preahvihear(
                                 fontSize: 20,
+
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white),
+                                overflow: TextOverflow.fade,
                           ),
                         ),
                         const SizedBox(
                           width: 20,
                         ),
-                        const Text(
-                          "7.00 AM",
+                         Text(
+                          TimeOfDay.now().format(context).toString(),
                           style: TextStyle(
-                              fontSize: 17,
+                              fontSize: 15,
                               color: Colors.white,
                               fontWeight: FontWeight.w300),
                         )

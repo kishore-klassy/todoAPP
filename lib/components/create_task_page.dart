@@ -128,7 +128,7 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: const Color.fromARGB(255, 39, 101, 250)),
+                    color: const Color.fromARGB(255, 136, 137, 139)),
                 child: Text(
                   "Planned",
                   style: GoogleFonts.aBeeZee(color: Colors.white, fontSize: 20),
@@ -139,17 +139,50 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
           const SizedBox(
             height: 10,
           ),
-          Text("Choose date & time",
-              style: GoogleFonts.aBeeZee(color: Colors.white, fontSize: 20)),
+         
+                Text("Choose time",
+                  style: GoogleFonts.aBeeZee(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600)),
+              const SizedBox(height: 10),
+              GestureDetector(
+                onTap: _showTimePicker,
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 200),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey)),
+                  child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Icon(
+                          Icons.date_range_rounded,
+                          color: Colors.grey,
+                        ),
+                        Text(
+                          "Select a time",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w500),
+                        )
+                      ]),
+                ),
+              ),
           const SizedBox(
             height: 100,
           ),
+
+          const Spacer(),
           GestureDetector(
               onTap: widget.onSave,
               child: Center(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 2),
+                  margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
                   width: double.maxFinite,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -167,7 +200,7 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                   //     style: GoogleFonts.aBeeZee(fontSize: 20, color: Colors.white),
                   //   )),
                   // ),
-                  child: MyButton(buttonName: "Save", onPressed: widget.onSave),
+                  child: MyButton(buttonName: "Create task", onPressed: widget.onSave),
                 ),
               ))
         ],

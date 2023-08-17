@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:todoapp/components/create_task_page.dart';
 import 'package:todoapp/data/database.dart';
@@ -117,6 +118,12 @@ int _currentIndex = 0;
 
     super.initState();
   }
+  String getFormattedDate() {
+  var now = DateTime.now();
+  var formatter = DateFormat('MMMM d, yyyy');
+  return formatter.format(now);
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +246,7 @@ int _currentIndex = 0;
                           height: 10,
                         ),
                         Text(
-                          "Monday 19",
+                          getFormattedDate(),
                           style: GoogleFonts.aBeeZee(
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
@@ -254,9 +261,7 @@ int _currentIndex = 0;
                   ],
                 ),
               ),
-              SizedBox(
-                height: 0,
-              ),
+           
               Expanded(
                 child: Container(
                     width: MediaQuery.of(context).size.width,
