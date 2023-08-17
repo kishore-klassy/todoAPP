@@ -108,7 +108,7 @@ int _currentIndex = 0;
   @override
   void initState() {
     // if this is the 1st time ever opening the app, then create default data
-    if (widget.box!.get("TODOLIST") == null) {
+    if (widget.box?.get("TODOLIST") == null) {
       db.createInitialData();
     } else {
       // there already exists data
@@ -281,6 +281,7 @@ int _currentIndex = 0;
                             itemCount: db.todoList.length,
                             itemBuilder: (context, index) {
                               return TodoTile(
+                                currentIndex: index,
                                 taskName: db.todoList[index][0],
                                 taskCompleted: db.todoList[index][1],
                                 onChanged: (value) =>

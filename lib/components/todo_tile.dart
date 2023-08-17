@@ -7,6 +7,7 @@ import 'package:msh_checkbox/msh_checkbox.dart';
 class TodoTile extends StatefulWidget {
   final String taskName;
   bool taskCompleted;
+  final int currentIndex;
   void Function(bool) onChanged;
   Function(BuildContext)? deleteFunction;
   Function(String)? editFunction;
@@ -17,7 +18,7 @@ class TodoTile extends StatefulWidget {
     required this.taskCompleted,
     required this.onChanged,
     required this.deleteFunction,
-    required this.editFunction,
+    required this.editFunction, required this.currentIndex,
   });
 
   @override
@@ -126,11 +127,10 @@ class _TodoTileState extends State<TodoTile> {
                 child: Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: const Icon(
-                        Icons.access_alarms_outlined,
-                        color: Colors.orange,
-                      ),
+                      decoration: BoxDecoration(color: const Color.fromARGB(255, 207, 24, 239)),
+                      margin: EdgeInsets.symmetric(horizontal:5),
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                      child: Text((widget.currentIndex+1).toString(),style: TextStyle(color: Colors.white),),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
