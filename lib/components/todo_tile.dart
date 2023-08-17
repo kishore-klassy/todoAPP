@@ -6,6 +6,7 @@ import 'package:msh_checkbox/msh_checkbox.dart';
 // ignore: must_be_immutable
 class TodoTile extends StatefulWidget {
   final String taskName;
+   final TimeOfDay? taskTime ;
   bool taskCompleted;
   void Function(bool) onChanged;
   Function(BuildContext)? deleteFunction;
@@ -14,6 +15,7 @@ class TodoTile extends StatefulWidget {
   TodoTile({
     super.key,
     required this.taskName,
+     this.taskTime,
     required this.taskCompleted,
     required this.onChanged,
     required this.deleteFunction,
@@ -25,6 +27,8 @@ class TodoTile extends StatefulWidget {
 }
 
 class _TodoTileState extends State<TodoTile> {
+
+  
   @override
   Widget build(BuildContext context) {
     // return Padding(
@@ -80,11 +84,11 @@ class _TodoTileState extends State<TodoTile> {
 
     return Container(
       width: MediaQuery.of(context).size.width - 20,
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
           MSHCheckbox(
-            size: 30,
+            size: 25,
             value: widget.taskCompleted,
             colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
                 checkedColor: Colors.green,
@@ -100,6 +104,7 @@ class _TodoTileState extends State<TodoTile> {
               startActionPane:
                   ActionPane(motion: const StretchMotion(), children: [
                 SlidableAction(
+                  autoClose: true,
                   onPressed: widget.deleteFunction,
                   icon: Icons.edit,
                   backgroundColor: Colors.green,
@@ -116,8 +121,8 @@ class _TodoTileState extends State<TodoTile> {
                 ),
               ]),
               child: Container(
-                margin: const EdgeInsets.only(left: 10, right: 20),
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                margin: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: widget.taskCompleted == true
@@ -148,8 +153,9 @@ class _TodoTileState extends State<TodoTile> {
                         const SizedBox(
                           width: 20,
                         ),
-                        const Text(
-                          "7.00 AM",
+                       Text(
+                        widget.taskTime!=null ?
+                        widget.taskTime!.format(context).toString() : "",
                           style: TextStyle(
                               fontSize: 17,
                               color: Colors.white,

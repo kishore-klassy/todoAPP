@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/data/signup_page.dart';
+import 'package:todoapp/pages/signup_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
