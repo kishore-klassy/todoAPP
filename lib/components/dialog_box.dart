@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/components/button.dart';
-
-import 'button.dart';
+import 'package:todoapp/components/save_cancel_btn.dart';
 
 class DialogBox extends StatelessWidget {
   final TextEditingController controller;
@@ -19,27 +18,30 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Container(
-        height: 120,
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Add a new Task",
+      content: IntrinsicWidth(
+        child: Container(
+          height: 120,
+          
+          margin: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              TextField(
+                controller: controller,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Add a new Task",
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                MyButton(buttonName: "Save", onPressed: onSave),
-                SizedBox(width: 10),
-                MyButton(buttonName: "Cancel", onPressed: onCancel),
-              ],
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SaveCancelBtn(buttonName: "Save", onPressed: onSave),
+                  const SizedBox(width: 10),
+                  SaveCancelBtn(buttonName: "Cancel", onPressed: onCancel),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

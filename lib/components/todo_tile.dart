@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
+import 'package:todoapp/data/database.dart';
 
 // ignore: must_be_immutable
-class TodoTile extends StatefulWidget {
+class TodoTile extends StatelessWidget {
   final String taskName;
   bool taskCompleted;
   final int currentIndex;
   void Function(bool) onChanged;
   Function(BuildContext)? deleteFunction;
-  Function(BuildContext)? editFunction;
+  Function(String)? editFunction;
 
   TodoTile({
     super.key,
@@ -18,14 +19,10 @@ class TodoTile extends StatefulWidget {
     required this.taskCompleted,
     required this.onChanged,
     required this.deleteFunction,
-    this.editFunction, required this.currentIndex,
+    this.editFunction,
+    required this.currentIndex,
   });
 
-  @override
-  State<TodoTile> createState() => _TodoTileState();
-}
-
-class _TodoTileState extends State<TodoTile> {
   @override
   Widget build(BuildContext context) {
     // return Padding(
@@ -86,12 +83,12 @@ class _TodoTileState extends State<TodoTile> {
         children: [
           MSHCheckbox(
             size: 30,
-            value: widget.taskCompleted,
+            value: taskCompleted,
             colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
                 checkedColor: Colors.green,
                 uncheckedColor: const Color.fromARGB(255, 115, 112, 112)),
             style: MSHCheckboxStyle.stroke,
-            onChanged: widget.onChanged,
+            onChanged: onChanged,
           ),
           const SizedBox(
             width: 10,
@@ -101,7 +98,7 @@ class _TodoTileState extends State<TodoTile> {
               startActionPane:
                   ActionPane(motion: const StretchMotion(), children: [
                 SlidableAction(
-                  onPressed: widget.editFunction,
+                  onPressed: deleteFunction,
                   icon: Icons.edit,
                   backgroundColor: Colors.green,
                   borderRadius: BorderRadius.circular(12),
@@ -110,7 +107,7 @@ class _TodoTileState extends State<TodoTile> {
               endActionPane:
                   ActionPane(motion: const StretchMotion(), children: [
                 SlidableAction(
-                  onPressed: widget.deleteFunction,
+                  onPressed: deleteFunction,
                   icon: Icons.delete_forever,
                   backgroundColor: Colors.red,
                   borderRadius: BorderRadius.circular(12),
@@ -121,44 +118,52 @@ class _TodoTileState extends State<TodoTile> {
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: widget.taskCompleted == true
+                    color: taskCompleted == true
                         ? const Color.fromRGBO(77, 125, 237, 1)
                         : const Color.fromRGBO(41, 46, 60, 1)),
                 child: Row(
                   children: [
                     Container(
-                      decoration: BoxDecoration(color: const Color.fromARGB(255,43, 200, 217)),
-                      margin: EdgeInsets.only(right:5,left: 5),
-                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                      child: Text((widget.currentIndex+1).toString(),style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800),),
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 43, 200, 217)),
+                      margin: EdgeInsets.only(right: 5, left: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      child: Text(
+                        (currentIndex + 1).toString(),
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w800),
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          constraints: const BoxConstraints(minWidth: 150,maxHeight: 155),
+                          constraints: const BoxConstraints(
+                              minWidth: 150, maxHeight: 155),
                           child: Text(
-                            
-                            widget.taskName,
-                            
+                            taskName,
                             style: GoogleFonts.preahvihear(
                                 fontSize: 20,
-
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white),
-                                overflow: TextOverflow.fade,
+                            overflow: TextOverflow.fade,
                           ),
                         ),
                         const SizedBox(
                           width: 20,
                         ),
-                         Text(
-                          TimeOfDay.now().format(context).toString(),
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300),
+                        IconButton(
+                          icon: const Icon(Icons.edit, size: 30),
+                          onPressed: () => editFunction!(taskName),
                         )
+                        //  Text(
+                        //   TimeOfDay.now().format(context).toString(),
+                        //   style: TextStyle(
+                        //       fontSize: 15,
+                        //       color: Colors.white,
+                        //       fontWeight: FontWeight.w300),
+                        // )
                       ],
                     )
                   ],

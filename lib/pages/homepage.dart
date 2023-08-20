@@ -7,6 +7,7 @@ import 'package:todoapp/data/database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todoapp/data/signup_page.dart';
 
+import '../components/dialog_box.dart';
 import '../components/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -81,31 +82,52 @@ int _currentIndex = 0;
         });
   }
 
-  void editTask(String taskName) {
-    _controller.text = taskName;
-    showDialog(
-      context: context,
-      builder: (context) {
-        return CreateNewTaskPage(
-          controller: _controller,
-          onSave: () async {
-            int index = db.todoList.indexWhere((task) => task[0] == taskName);
-            if (index != -1) {
-              db.todoList[index][0] = _controller.text;
+  // void editTask(String taskName) {
+  //   _controller.text = taskName;
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return CreateNewTaskPage(
+  //         controller: _controller,
+  //         onSave: () async {
+  //           int index = db.todoList.indexWhere((task) => task[0] == taskName);
+  //           if (index != -1) {
+  //             db.todoList[index][0] = _controller.text;
 
-              _controller.clear();
-              Navigator.of(context).pop();
-              db.updateDataBase();
-              await Future.delayed(Duration.zero); // Delay the setState() call
+  //             _controller.clear();
+  //             Navigator.of(context).pop();
+  //             db.updateDataBase();
+  //             await Future.delayed(Duration.zero); // Delay the setState() call
 
-              setState(() {});
-            }
-          },
-        );
+  //             setState(() {});
+  //           }
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
+void editTask(String taskName) {
+  _controller.text = taskName;
+  showDialog(
+    context: context,
+    builder: (context) {
+      return DialogBox(
+      controller: _controller,
+      onCancel: () => Navigator.of(context).pop(),
+      onSave: () {
+        int index = db.todoList.indexWhere((task) => task[0] == taskName);
+        if (index != -1) {
+          setState(() {
+            db.todoList[index][0] = _controller.text;
+          });
+          _controller.clear();
+          Navigator.of(context).pop();
+        }
       },
-    );
-  }
-
+        );
+    },
+  );
+}
   @override
   void initState() {
     // if this is the 1st time ever opening the app, then create default data
@@ -223,6 +245,7 @@ int _currentIndex = 0;
                   stops: [0.30, 1])),
           padding: const EdgeInsets.only(top: 50, left: 20, right: 0),
           height: MediaQuery.of(context).size.height,
+          width:MediaQuery.of(context).size.width ,
           child: Column(
             children: [
               SingleChildScrollView(
@@ -292,7 +315,7 @@ int _currentIndex = 0;
                                 onChanged: (value) =>
                                     checkBoxChanged(value, index),
                                 deleteFunction: (context) => deleteTask(index),
-                                editFunction: (value) {editTask("dfe");},
+                                editFunction: editTask,
                               );
                             },
                           )),
