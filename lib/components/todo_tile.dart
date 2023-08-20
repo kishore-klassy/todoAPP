@@ -10,7 +10,7 @@ class TodoTile extends StatefulWidget {
   final int currentIndex;
   void Function(bool) onChanged;
   Function(BuildContext)? deleteFunction;
-  Function(String)? editFunction;
+  Function(BuildContext)? editFunction;
 
   TodoTile({
     super.key,
@@ -18,7 +18,7 @@ class TodoTile extends StatefulWidget {
     required this.taskCompleted,
     required this.onChanged,
     required this.deleteFunction,
-    required this.editFunction, required this.currentIndex,
+    this.editFunction, required this.currentIndex,
   });
 
   @override
@@ -101,7 +101,7 @@ class _TodoTileState extends State<TodoTile> {
               startActionPane:
                   ActionPane(motion: const StretchMotion(), children: [
                 SlidableAction(
-                  onPressed: widget.deleteFunction,
+                  onPressed: widget.editFunction,
                   icon: Icons.edit,
                   backgroundColor: Colors.green,
                   borderRadius: BorderRadius.circular(12),

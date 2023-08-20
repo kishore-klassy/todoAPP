@@ -34,12 +34,12 @@ int _currentIndex = 0;
       context,
       MaterialPageRoute(builder: (context) => CreateNewTaskPage(controller: _controller,onSave: saveNewTask,)), // Create AddTaskPage
     );
-  } else if (index == 2) {
-    // Navigate to SettingsPage
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SignUpPage()), // Create SettingsPage
-    );
+  // } else if (index == 2) {
+  //   // Navigate to SettingsPage
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => SignUpPage()), // Create SettingsPage
+  //   );
   }
   });
 
@@ -292,7 +292,7 @@ int _currentIndex = 0;
                                 onChanged: (value) =>
                                     checkBoxChanged(value, index),
                                 deleteFunction: (context) => deleteTask(index),
-                                editFunction: editTask,
+                                editFunction: (value) {editTask("dfe");},
                               );
                             },
                           )),

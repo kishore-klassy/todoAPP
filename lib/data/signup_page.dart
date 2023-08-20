@@ -31,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 begin: Alignment.topLeft,
                 stops: [0.04, 0.60, 1])),
         padding: const EdgeInsets.only(top: 50),
-        height: double.maxFinite,
+        height: double.infinity,
         width: double.maxFinite,
         child: Column(
           children: [
