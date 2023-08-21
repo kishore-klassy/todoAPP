@@ -61,7 +61,10 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
           const SizedBox(
             height: 20,
           ),
-          Text(
+          Padding(padding: EdgeInsets.only(left: 10),child: Column(
+
+            children: [
+               Text(
             "Create",
             style: GoogleFonts.aBeeZee(
                 fontSize: 30, fontWeight: FontWeight.w800, color: Colors.white),
@@ -172,6 +175,9 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                       ]),
                 ),
               ),
+            ],
+          ),),
+         
           const SizedBox(
             height: 100,
           ),

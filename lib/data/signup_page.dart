@@ -82,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 imageUrl: "assets/images/skipfornow.png",
                 name: "Continue without signing in",
               ),
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context)=>HomePage(box: widget.box,))),
+              onTap: () =>Navigator.push(context, MaterialPageRoute(builder:(context)=>HomePage(box: widget.box,))),
             ),
           ],
         ),

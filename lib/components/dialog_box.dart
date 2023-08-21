@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/components/button.dart';
+import 'package:todoapp/components/create_task_page.dart';
 import 'package:todoapp/components/save_cancel_btn.dart';
+
+import '../pages/edit_task_page.dart';
 
 class DialogBox extends StatelessWidget {
   final TextEditingController controller;
@@ -17,33 +20,35 @@ class DialogBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      content: IntrinsicWidth(
-        child: Container(
-          height: 120,
-          
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              TextField(
-                controller: controller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Add a new Task",
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SaveCancelBtn(buttonName: "Save", onPressed: onSave),
-                  const SizedBox(width: 10),
-                  SaveCancelBtn(buttonName: "Cancel", onPressed: onCancel),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+    return 
+       EditTaskPage(
+        onSave:onSave,
+        controller: controller,
+      );
+  }}
+  
+  
+//   margin: const EdgeInsets.symmetric(horizontal: 10),
+//         child: Column(
+//           children: [
+//             TextField(
+//               controller: controller,
+//               decoration: const InputDecoration(
+//                 border: OutlineInputBorder(),
+//                 hintText: "Add a new Task",
+//               ),
+//             ),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               children: [
+//                 SaveCancelBtn(buttonName: "Save", onPressed: onSave),
+//                 const SizedBox(width: 10),
+//                 SaveCancelBtn(buttonName: "Cancel", onPressed: onCancel),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ),
+   
+//   }
+// }

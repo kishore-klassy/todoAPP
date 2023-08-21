@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:todoapp/data/database.dart';
 
@@ -150,12 +151,11 @@ class TodoTile extends StatelessWidget {
                             overflow: TextOverflow.fade,
                           ),
                         ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.edit, size: 30),
-                          onPressed: () => editFunction!(taskName),
+                     Spacer(),
+                   
+                        InkWell(
+                           onTap: () => editFunction!(taskName),
+                          child: Lottie.asset("assets/clips/editanimation.json",width: 40,height: 40),
                         )
                         //  Text(
                         //   TimeOfDay.now().format(context).toString(),
