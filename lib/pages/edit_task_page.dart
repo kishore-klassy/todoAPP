@@ -75,18 +75,20 @@ class _EditTaskPageState extends State<EditTaskPage> {
                     borderSide: BorderSide.none,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 disabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+
                     borderRadius: BorderRadius.all(Radius.circular(12))),
                 hintText: "Task Title",
                 hintStyle:
                     TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
                 enabledBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 239, 237, 237))),
+                                       borderSide: BorderSide.none,
+),
                 fillColor: Color.fromARGB(255, 41, 46, 60),
                 filled: true,
               )),
           const SizedBox(
-            height: 15,
+            height: 45,
           ),
 
         

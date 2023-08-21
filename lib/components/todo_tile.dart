@@ -96,15 +96,15 @@ class TodoTile extends StatelessWidget {
           ),
           Expanded(
             child: Slidable(
-              startActionPane:
-                  ActionPane(motion: const StretchMotion(), children: [
-                SlidableAction(
-                  onPressed: deleteFunction,
-                  icon: Icons.edit,
-                  backgroundColor: Colors.green,
-                  borderRadius: BorderRadius.circular(12),
-                )
-              ]),
+              // startActionPane:
+              //     ActionPane(motion: const StretchMotion(), children: [
+              //   SlidableAction(
+              //     onPressed: deleteFunction,
+              //     icon: Icons.edit,
+              //     backgroundColor: Colors.green,
+              //     borderRadius: BorderRadius.circular(12),
+              //   )
+              // ]),
               endActionPane:
                   ActionPane(motion: const StretchMotion(), children: [
                 SlidableAction(
@@ -141,7 +141,7 @@ class TodoTile extends StatelessWidget {
                       children: [
                         Container(
                           constraints: const BoxConstraints(
-                              minWidth: 150, maxHeight: 155),
+                              minWidth: 200, maxHeight: 155),
                           child: Text(
                             taskName,
                             style: GoogleFonts.preahvihear(
@@ -151,12 +151,13 @@ class TodoTile extends StatelessWidget {
                             overflow: TextOverflow.fade,
                           ),
                         ),
-                     Spacer(),
+                    //  Spacer(),
+                    IconButton(onPressed:() => editFunction!(taskName) , icon: Icon(Icons.edit,color: Colors.white,))
                    
-                        InkWell(
-                           onTap: () => editFunction!(taskName),
-                          child: Lottie.asset("assets/clips/editanimation.json",width: 40,height: 40),
-                        )
+                        // InkWell(
+                        //    onTap: () => editFunction!(taskName),
+                        //   child: Lottie.asset("assets/clips/editanimation.json",width: 40,height: 40),
+                        // )
                         //  Text(
                         //   TimeOfDay.now().format(context).toString(),
                         //   style: TextStyle(

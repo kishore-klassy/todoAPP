@@ -16,6 +16,7 @@ class CreateNewTaskPage extends StatefulWidget {
 }
 
 class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
+
   TimeOfDay? _timeOfDay;
   void _showTimePicker() async {
     final selectedTime =
@@ -30,188 +31,203 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset:false ,
+        resizeToAvoidBottomInset: false,
         body: Container(
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                //Color.fromRGBO(91, 71, 180, 1),
-                Color.fromRGBO(37, 32, 65, 1),
-                Color.fromRGBO(29, 31, 37, 1)
-                // Colors.red,
-                // Colors.blue
-              ],
-              begin: Alignment(0, -1),
-              //end: Alignment(10, 10),
-              stops: [0.30, 1])),
-      padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-              size: 30,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Padding(padding: EdgeInsets.only(left: 10),child: Column(
-
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                    //Color.fromRGBO(91, 71, 180, 1),
+                    Color.fromRGBO(37, 32, 65, 1),
+                    Color.fromRGBO(29, 31, 37, 1)
+                    // Colors.red,
+                    // Colors.blue
+                  ],
+                  begin: Alignment(0, -1),
+                  //end: Alignment(10, 10),
+                  stops: [0.30, 1])),
+          padding: const EdgeInsets.only(top: 50, left: 10, right: 20),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text(
-            "Create",
-            style: GoogleFonts.aBeeZee(
-                fontSize: 30, fontWeight: FontWeight.w800, color: Colors.white),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            "New Task",
-            style: GoogleFonts.aBeeZee(
-                fontSize: 30, fontWeight: FontWeight.w800, color: Colors.white),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          TextField(
-              style: const TextStyle(color: Colors.white),
-              showCursor: true,
-              cursorColor: Colors.grey,
-              cursorOpacityAnimates: true,
-              controller: widget.controller,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12))),
-                hintText: "Task Title",
-                hintStyle:
-                    TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
-                enabledBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 239, 237, 237))),
-                fillColor: Color.fromARGB(255, 41, 46, 60),
-                filled: true,
-              )),
-          const SizedBox(
-            height: 15,
-          ),
-          Text("Task type",
-              style: GoogleFonts.aBeeZee(
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(
+                  Icons.arrow_back,
                   color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800)),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: const Color.fromARGB(255, 39, 101, 250)),
-                child: Text(
-                  "Important",
-                  style: GoogleFonts.aBeeZee(color: Colors.white, fontSize: 20),
+                  size: 30,
                 ),
               ),
               const SizedBox(
-                width: 10,
+                height: 20,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: const Color.fromARGB(255, 136, 137, 139)),
-                child: Text(
-                  "Planned",
-                  style: GoogleFonts.aBeeZee(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-         
-                Text("Choose time",
-                  style: GoogleFonts.aBeeZee(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600)),
-              const SizedBox(height: 10),
-              GestureDetector(
-                onTap: _showTimePicker,
-                child: Container(
-                  constraints: const BoxConstraints(maxWidth: 200),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey)),
-                  child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Padding(
+                padding: EdgeInsets.only(left: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Create",
+                      style: GoogleFonts.aBeeZee(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "New Task",
+                      style: GoogleFonts.aBeeZee(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                        style: const TextStyle(color: Colors.white),
+                        showCursor: true,
+                        cursorColor: Colors.grey,
+                        cursorOpacityAnimates: true,
+                        controller: widget.controller,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
+                          disabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
+                          hintText: "Task Title",
+                          hintStyle: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.w600),
+                          enabledBorder:
+                              UnderlineInputBorder(borderSide: BorderSide.none),
+                          fillColor: Color.fromARGB(255, 41, 46, 60),
+                          filled: true,
+                        )),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text("Task type",
+                        style: GoogleFonts.aBeeZee(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800)),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
                       children: [
-                        Icon(
-                          Icons.date_range_rounded,
-                          color: Colors.grey,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: const Color.fromARGB(255, 39, 101, 250)),
+                          child: Text(
+                            "Important",
+                            style: GoogleFonts.aBeeZee(
+                                color: Colors.white, fontSize: 20),
+                          ),
                         ),
-                        Text(
-                          "Select a time",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w500),
-                        )
-                      ]),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: const Color.fromARGB(255, 136, 137, 139)),
+                          child: Text(
+                            "Planned",
+                            style: GoogleFonts.aBeeZee(
+                                color: Colors.white, fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text("Choose time",
+                        style: GoogleFonts.aBeeZee(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600)),
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: _showTimePicker,
+                      child: Container(
+                        constraints: const BoxConstraints(maxWidth: 200),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: Colors.grey)),
+                        child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.date_range_rounded,
+                                color: Colors.grey,
+                              ),
+                              Text(
+                                "Select a time",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w500),
+                              )
+                            ]),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              const SizedBox(
+                height: 100,
+              ),
+              const Spacer(),
+              GestureDetector(
+                  onTap: widget.onSave,
+                  child: Center(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 2),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        gradient: const LinearGradient(
+                            colors: [
+                              Color.fromRGBO(149, 72, 243, 1),
+                              Color.fromRGBO(149, 72, 243, 1),
+                            ],
+                            stops: [
+                              0.2,
+                              0.8,
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight),
+                      ),
+                      //   child: Center(
+                      //       child: Text(
+                      //     "Create Task",
+                      //     style: GoogleFonts.aBeeZee(fontSize: 20, color: Colors.white),
+                      //   )),
+                      // ),
+                      child: MyButton(
+                          buttonName: "Create task", onPressed: widget.onSave),
+                    ),
+                  ))
             ],
-          ),),
-         
-          const SizedBox(
-            height: 100,
           ),
-
-          const Spacer(),
-          GestureDetector(
-              onTap: widget.onSave,
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 2),
-                  margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    gradient: const LinearGradient(colors: [
-                      Color.fromRGBO(149, 72, 243, 1),
-                      Color.fromRGBO(149, 72, 243, 1),
-                    ], stops: [
-                      0.2,
-                      0.8,
-                    ], begin: Alignment.centerLeft, end: Alignment.centerRight),
-                  ),
-                  //   child: Center(
-                  //       child: Text(
-                  //     "Create Task",
-                  //     style: GoogleFonts.aBeeZee(fontSize: 20, color: Colors.white),
-                  //   )),
-                  // ),
-                  child: MyButton(buttonName: "Create task", onPressed: widget.onSave),
-                ),
-              ))
-        ],
-      ),
-    ));
+        ));
   }
 }
 
