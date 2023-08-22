@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:todoapp/components/create_task_page.dart';
 import 'package:todoapp/data/database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todoapp/data/signup_page.dart';
+import 'package:todoapp/pages/signup_page.dart';
 
 import '../components/dialog_box.dart';
 import '../components/todo_tile.dart';
@@ -35,12 +35,7 @@ int _currentIndex = 0;
       context,
       MaterialPageRoute(builder: (context) => CreateNewTaskPage(controller: _controller,onSave: saveNewTask,)), // Create AddTaskPage
     );
-  // } else if (index == 2) {
-  //   // Navigate to SettingsPage
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => SignUpPage()), // Create SettingsPage
-  //   );
+
   }
   });
 

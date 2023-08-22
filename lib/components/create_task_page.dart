@@ -17,13 +17,11 @@ class CreateNewTaskPage extends StatefulWidget {
 
 class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
 
-  TimeOfDay? _timeOfDay;
   void _showTimePicker() async {
     final selectedTime =
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
     setState(() {
       if (selectedTime != null) {
-        _timeOfDay = selectedTime;
       }
     });
   }

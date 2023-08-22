@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
             Container(
                 width: 400,
                 height: 400,
-                child: Lottie.asset("assets/clips/animation_llchwdpd.json")),
+                child: Lottie.asset("assets/clips/animation_llchwdpd.json")), //
             Text(
               "Organize your works",
               style: GoogleFonts.aBeeZee(

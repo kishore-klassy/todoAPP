@@ -1,9 +1,8 @@
+// ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
-import 'package:todoapp/data/database.dart';
 
 // ignore: must_be_immutable
 class TodoTile extends StatelessWidget {
