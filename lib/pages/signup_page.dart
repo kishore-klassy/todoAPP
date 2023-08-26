@@ -6,10 +6,9 @@ import 'package:todoapp/components/signin_button.dart';
 import 'package:todoapp/pages/homepage.dart';
 
 class SignUpPage extends StatefulWidget {
-  final Box<dynamic>? box;
 
-  const SignUpPage({super.key,this.box});
-
+  final Box<dynamic>? box;  /// A reference to the Hive box for data storage
+  const SignUpPage({super.key,this.box});  
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -25,8 +24,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   Color.fromRGBO(91, 71, 180, 1),
                   Color.fromRGBO(44, 38, 57, 1),
                   Color.fromRGBO(29, 31, 37, 1)
-                  // Colors.red,
-                  // Colors.blue
                 ],
                 begin: Alignment.topLeft,
                 stops: [0.04, 0.60, 1])),
@@ -38,7 +35,7 @@ class _SignUpPageState extends State<SignUpPage> {
             Container(
                 width: 400,
                 height: 400,
-                child: Lottie.asset("assets/clips/animation_llchwdpd.json")), //
+                child: Lottie.asset("assets/clips/animation_llchwdpd.json")), //task logo animation
             Text(
               "Organize your works",
               style: GoogleFonts.aBeeZee(
@@ -83,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 name: "Continue without signing in",
               ),
               onTap: () =>Navigator.push(context, MaterialPageRoute(builder:(context)=>HomePage(box: widget.box,))),
-            ),
+            ),//on tapping this button will take to the homepage ui
           ],
         ),
       ),

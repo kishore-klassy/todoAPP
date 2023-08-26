@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
-import 'package:todoapp/components/create_task_page.dart';
+import 'package:google_fonts/google_fonts.dart';//this google_font package is to 
+import 'package:intl/intl.dart';//this intl is used for formating 
+import 'package:lottie/lottie.dart'; //this lottie package is for animations
+import 'package:todoapp/pages/create_task_page.dart';
 import 'package:todoapp/data/database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todoapp/pages/signup_page.dart';
-
 import '../components/dialog_box.dart';
 import '../components/todo_tile.dart';
 
@@ -42,7 +40,7 @@ int _currentIndex = 0;
   // Rest of the navigation logic
 }
 
-
+  //This method is to change the state of the checkbox whether the task is completed or not 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
       db.todoList[index][1] = !db.todoList[index][1];
@@ -50,7 +48,7 @@ int _currentIndex = 0;
     db.updateDataBase();
   }
 
-  // save new task
+  // save new task and will add the new task in the database
   void saveNewTask() {
     setState(() {
       db.todoList.add([_controller.text, false]);
@@ -59,14 +57,14 @@ int _currentIndex = 0;
     Navigator.of(context).pop();
     db.updateDataBase();
   }
-
+  //this method will remove the task when delete button is pressed
   void deleteTask(int index) {
     setState(() {
       db.todoList.removeAt(index);
     });
     db.updateDataBase();
   }
-
+ //this method will create new task and return the createNewATaskPage with parameter controller and saveNewTask function
   void createNewTask() {
     _controller.clear();
     showDialog(
@@ -77,30 +75,7 @@ int _currentIndex = 0;
         });
   }
 
-  // void editTask(String taskName) {
-  //   _controller.text = taskName;
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return CreateNewTaskPage(
-  //         controller: _controller,
-  //         onSave: () async {
-  //           int index = db.todoList.indexWhere((task) => task[0] == taskName);
-  //           if (index != -1) {
-  //             db.todoList[index][0] = _controller.text;
-
-  //             _controller.clear();
-  //             Navigator.of(context).pop();
-  //             db.updateDataBase();
-  //             await Future.delayed(Duration.zero); // Delay the setState() call
-
-  //             setState(() {});
-  //           }
-  //         },
-  //       );
-  //     },
-  //   );
-  // }
+  //this method will return the editTaskPage and  will update  on the database 
 void editTask(String taskName) {
   _controller.text = taskName;
   showDialog(
@@ -108,12 +83,12 @@ void editTask(String taskName) {
     builder: (context) {
       return DialogBox(
       controller: _controller,
-      onCancel: () => Navigator.of(context).pop(),
+      onCancel: () => Navigator.of(context).pop(), //when cancel button is clicked the current page will get poped and the previous page will be displayed
       onSave: () {
-        int index = db.todoList.indexWhere((task) => task[0] == taskName);
+        int index = db.todoList.indexWhere((task) => task[0] == taskName);//task[0] is the name of the task 
         if (index != -1) {
           setState(() {
-            db.todoList[index][0] = _controller.text;
+            db.todoList[index][0] = _controller.text; //todoList[index][0]  is the name of the task
           });
           _controller.clear();
           Navigator.of(context).pop();
@@ -145,54 +120,15 @@ void editTask(String taskName) {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color.fromARGB(255, 52, 53, 67),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: createNewTask,
-      //   child: const Icon(Icons.add),
-      // ),
-      // appBar: AppBar(
-      //   title: const Text(
-      //     "TO DO",
-      //     style: TextStyle(fontWeight: FontWeight.w500),
-      //   ),
-      //   backgroundColor: Colors.lightBlueAccent,
-      // ),
-      // body: Column(
-      //   children: [
-      //     Expanded(
-      //       child: Container(
-      //           child: db.todoList.length == 0
-      //               ? const Center(child: Text("No Task,Add Some thing"))
-      //               : ListView.builder(
-      //                   itemCount: db.todoList.length,
-      //                   itemBuilder: (context, index) {
-      //                     return TodoTile(
-      //                       taskName: db.todoList[index][0],
-      //                       taskCompleted: db.todoList[index][1],
-      //                       onChanged: (value) => checkBoxChanged(value, index),
-      //                       deleteFunction: (context) => deleteTask(index),
-      //                       editFunction: editTask,
-      //                     );
-      //                   },
-      //                 )),
-      //     ),
-      //     MaterialButton(
-      //         onPressed: () => Navigator.push(context,
-      //             MaterialPageRoute(builder: (context) => NewTaskPage(controller: _controller,))),
-      //             color: Colors.blue,
-      //                  child: Text("Create New Task"),
-
-      //             )
-      //   ],
-      // ),
+      
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomNavigationBar(
           onTap: _onTabTapped,
           currentIndex: _currentIndex,
-          backgroundColor: Color.fromRGBO(29, 31, 37, 1),
+          backgroundColor: const Color.fromRGBO(29, 31, 37, 1),
           elevation: 3,
           items: [
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
                   color: Colors.white,
@@ -210,7 +146,7 @@ void editTask(String taskName) {
                 ),
                 backgroundColor: Colors.purple,
                 label: ""),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.settings,
                   color: Colors.grey,
@@ -245,7 +181,7 @@ void editTask(String taskName) {
             children: [
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                physics: BouncingScrollPhysics(
+                physics: const BouncingScrollPhysics(
                     parent: NeverScrollableScrollPhysics()),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -288,7 +224,7 @@ void editTask(String taskName) {
                             child: Column(
                             children: [
                               Lottie.asset("assets/clips/notaskanimation.json"),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text(
@@ -310,7 +246,7 @@ void editTask(String taskName) {
                                 onChanged: (value) =>
                                     checkBoxChanged(value, index),
                                 deleteFunction: (context) => deleteTask(index),
-                                editFunction: editTask,
+                                editFunction: editTask,//editTask is the method which is defined in this same file
                               );
                             },
                           )),

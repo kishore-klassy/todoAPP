@@ -124,14 +124,14 @@ class TodoTile extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 43, 200, 217)),
-                      margin: EdgeInsets.only(right: 5, left: 5),
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 43, 200, 217)),
+                      margin: const EdgeInsets.only(right: 5, left: 5),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
                       child: Text(
                         (currentIndex + 1).toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.w800),
                       ),
                     ),
@@ -144,14 +144,16 @@ class TodoTile extends StatelessWidget {
                           child: Text(
                             taskName,
                             style: GoogleFonts.preahvihear(
+
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white),
-                            overflow: TextOverflow.fade,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
                         ),
                     //  Spacer(),
-                    IconButton(onPressed:() => editFunction!(taskName) , icon: Icon(Icons.edit,color: Colors.white,))
+                    IconButton(onPressed:() => editFunction!(taskName) , icon: const Icon(Icons.edit,color: Colors.white,))
                    
                         // InkWell(
                         //    onTap: () => editFunction!(taskName),
