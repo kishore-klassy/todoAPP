@@ -133,7 +133,7 @@ class TodoTile extends StatelessWidget {
                         (currentIndex + 1).toString(),
                         style: const TextStyle(
                             color: Colors.white, fontWeight: FontWeight.w800),
-                      ),
+                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -152,20 +152,10 @@ class TodoTile extends StatelessWidget {
                             maxLines: 1,
                           ),
                         ),
-                    //  Spacer(),
+                   
                     IconButton(onPressed:() => editFunction!(taskName) , icon: const Icon(Icons.edit,color: Colors.white,))
                    
-                        // InkWell(
-                        //    onTap: () => editFunction!(taskName),
-                        //   child: Lottie.asset("assets/clips/editanimation.json",width: 40,height: 40),
-                        // )
-                        //  Text(
-                        //   TimeOfDay.now().format(context).toString(),
-                        //   style: TextStyle(
-                        //       fontSize: 15,
-                        //       color: Colors.white,
-                        //       fontWeight: FontWeight.w300),
-                        // )
+              
                       ],
                     )
                   ],
